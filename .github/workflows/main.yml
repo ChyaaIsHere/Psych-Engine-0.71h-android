@@ -65,17 +65,22 @@ jobs:
 
       - name: Building
         run: |
-          script -q -c "yes 'Y' | haxelib run lime build android" /dev/null
+          script -q -c "yes 'Y' | haxelib run lime build android -release" /dev/null
         env:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
 
       - name: Cari Lokasi APK
         run: |
-          find . -name "*.apk"
+          echo "=== APK FILES ==="
+          find . -iname "*.apk"
+
+          echo "=== EXPORT FOLDER ==="
+          find export -type f | head -100
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: androidBuild
-          path: export/release/android/bin/app/build/outputs/apk/**/*.apk
+          path: |
+            **/*.apk
