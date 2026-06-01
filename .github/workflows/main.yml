@@ -70,8 +70,12 @@ jobs:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@main
+- name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: androidBuild
-          path: export/release/android/bin/app/build/outputs/apk/debug
+          path: export/release/android/bin/app/build/outputs/apk/release/
+
+      - name: Cari Lokasi APK
+        run: |
+          find . -name "*.apk"
