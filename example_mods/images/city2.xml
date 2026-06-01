@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- OPTIMIZADO BY VGPH MODS :3 -->
+
+<TextureAtlas imagePath="city2.png">
+	<SubTexture name="city0000" x="0" y="0" width="928" height="554" frameX="2" frameY="2" frameWidth="925" frameHeight="551"/>
+	<SubTexture name="city0001" x="1856" y="554" width="928" height="554" frameX="2" frameY="2" frameWidth="925" frameHeight="551"/>
+	<SubTexture name="city0002" x="0" y="554" width="928" height="554" frameX="2" frameY="2" frameWidth="925" frameHeight="551"/>
+	<SubTexture name="city0003" x="0" y="1108" width="928" height="554" frameX="2" frameY="2" frameWidth="925" frameHeight="551"/>
+	<SubTexture name="city0004" x="928" y="554" width="928" height="554" frameX="2" frameY="2" frameWidth="925" frameHeight="551"/>
+	<SubTexture name="city0005" x="928" y="0" width="928" height="554" frameX="2" frameY="2" frameWidth="925" frameHeight="551"/>
+	<SubTexture name="city0006" x="928" y="1108" width="928" height="554" frameX="2" frameY="2" frameWidth="925" frameHeight="551"/>
+	<SubTexture name="city0007" x="1856" y="1108" width="928" height="554" frameX="2" frameY="2" frameWidth="925" frameHeight="551"/>
+	<SubTexture name="city0008" x="1856" y="0" width="928" height="554" frameX="2" frameY="2" frameWidth="925" frameHeight="551"/>
+</TextureAtlas>
