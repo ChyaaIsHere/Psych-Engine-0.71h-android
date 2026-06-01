@@ -65,12 +65,10 @@ jobs:
 
       - name: Building
         run: |
-
-          CI=true haxelib run lime build android
+          script -q -c "yes 'Y' | haxelib run lime build android" /dev/null
         env:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
-          CI: "true"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@main
