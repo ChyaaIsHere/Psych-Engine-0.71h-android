@@ -1,0 +1,22 @@
+
+{
+	"songs": [
+		["Blueballed", "pibboyfriend", [0,150,255]]
+	],
+
+	"weekCharacters": [
+		"CBFS",
+		"",
+		"BFS"
+	],
+	"weekBackground": "hue",
+
+	"storyName": "rescript",
+	"weekBefore": "",
+	"weekName": "4r1day n1ght 4unk1n",
+	"difficulties": "Easy,Normal,Hard",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}
