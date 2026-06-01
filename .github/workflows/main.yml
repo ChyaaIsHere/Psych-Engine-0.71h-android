@@ -65,11 +65,12 @@ jobs:
 
       - name: Building
         run: |
-          rm -f /home/runner/settings.cocoa
-          timeout 3s yes "n" | haxelib run lime build android
+
+          CI=true haxelib run lime build android
         env:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
+          CI: "true"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@main
