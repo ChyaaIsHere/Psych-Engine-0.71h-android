@@ -65,11 +65,8 @@ jobs:
 
       - name: Building
         run: |
-
-          echo '{"loopUnrolling": 25, "importAll": false, "showMacroScreen": false}' > /home/runner/settings.cocoa
-          
-        
-          haxelib run lime build android
+          rm -f /home/runner/settings.cocoa
+          timeout 3s yes "n" | haxelib run lime build android
         env:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
