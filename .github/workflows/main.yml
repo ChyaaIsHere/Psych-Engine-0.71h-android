@@ -91,11 +91,12 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Building
-        run: |
-          echo "n" | haxelib run lime build android || haxelib run lime build android
-        env:
-          cert_pass: nullfunni
-          cert_alias_pass: nullfunni
+              run: |
+                echo "n" | haxelib run lime build android || true
+                haxelib run lime build android
+              env:
+                cert_pass: nullfunni
+                cert_alias_pass: nullfunni
 
       - name: Clear Previous Cache
         uses: actions/github-script@main
