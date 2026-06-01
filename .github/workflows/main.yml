@@ -65,7 +65,8 @@ jobs:
 
       - name: Building
         run: |
-          haxelib run lime build android
+          # 'yes "Y"' akan otomatis menjawab "Y" untuk setiap pertanyaan setup yang muncul
+          yes "Y" | haxelib run lime build android
         env:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
