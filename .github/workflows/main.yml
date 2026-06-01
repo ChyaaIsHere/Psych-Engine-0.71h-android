@@ -63,8 +63,10 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
+      # Perbaikan utama ada di simbol '|' di bawah ini agar bypass validasi ketat YAML
       - name: Pre-configure SScript
-        run: haxe --eval "sys.io.File.saveContent('/home/runner/settings.cocoa', haxe.Serializer.run({loopUnrolling: 25, importAll: false, showMacroScreen: false}))"
+        run: |
+          haxe --eval "sys.io.File.saveContent('/home/runner/settings.cocoa', haxe.Serializer.run({loopUnrolling: 25, importAll: false, showMacroScreen: false}))"
 
       - name: Building
         run: haxelib run lime build android
