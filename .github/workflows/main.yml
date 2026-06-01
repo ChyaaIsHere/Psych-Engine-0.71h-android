@@ -65,7 +65,7 @@ jobs:
 
       - name: Building
         run: |
-          echo "N" | haxelib run lime build android
+          haxelib run lime build android -verbose
         env:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
