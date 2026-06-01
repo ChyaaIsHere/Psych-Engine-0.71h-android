@@ -67,6 +67,17 @@ jobs:
           haxelib install extension-androidtools || \
           echo "Warning: extension-androidtools not found, build might fail"
 
+      - name: Debug Info
+        run: |
+          echo "=== HAXE VERSION ==="
+          haxe --version
+          echo "=== HAXELIB LIST ==="
+          haxelib list
+          echo "=== PROJECT FILES ==="
+          ls -la
+          echo "=== PROJECT.XML CONTENT ==="
+          cat project.xml | grep -E "haxelib|lib" || echo "No project.xml found"
+
       - name: Setup Android SDK
         run: |
           # Install SDK platforms jika diperlukan
@@ -126,15 +137,3 @@ jobs:
             export/**/*.apk
             export/**/*.aab
           if-no-files-found: warn
-
-
-                - name: Debug Info
-        run: |
-          echo "=== HAXE VERSION ==="
-          haxe --version
-          echo "=== HAXELIB LIST ==="
-          haxelib list
-          echo "=== PROJECT FILES ==="
-          ls -la
-          echo "=== PROJECT.XML CONTENT ==="
-          cat project.xml | grep -E "haxelib|lib" || echo "No project.xml found"
