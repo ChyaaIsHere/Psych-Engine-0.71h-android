@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0",
+  "name": "Volume CBF",
+  "artists": ["Juno"],
+  "albumArtAsset": "freeplay/albumRoll/volumeCBF",
+  "albumTitleAsset": "freeplay/albumRoll/volumeCBF-text"
+}

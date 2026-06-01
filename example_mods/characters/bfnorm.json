@@ -1,0 +1,157 @@
+{
+    "animations": [
+        {
+            "loop": true,
+            "offsets": [
+                -115,
+                -130
+            ],
+            "anim": "idle",
+            "fps": 24,
+            "name": "Idle",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -106,
+                -136
+            ],
+            "anim": "singLEFT",
+            "fps": 24,
+            "name": "Left0",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -121,
+                -158
+            ],
+            "anim": "singDOWN",
+            "fps": 24,
+            "name": "Down0",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -121,
+                -93
+            ],
+            "anim": "singUP",
+            "fps": 24,
+            "name": "Up0",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -147,
+                -129
+            ],
+            "anim": "singRIGHT",
+            "fps": 24,
+            "name": "Right0",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -106,
+                -111
+            ],
+            "anim": "singLEFTmiss",
+            "fps": 24,
+            "name": "LeftMiss",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -136,
+                -148
+            ],
+            "anim": "singDOWNmiss",
+            "fps": 24,
+            "name": "DownMiss",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -154,
+                -105
+            ],
+            "anim": "singUPmiss",
+            "fps": 24,
+            "name": "UpMiss",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -153,
+                -105
+            ],
+            "anim": "singRIGHTmiss",
+            "fps": 24,
+            "name": "RightMiss",
+            "indices": []
+        },
+        {
+            "offsets": [
+                -130,
+                -100
+            ],
+            "indices": [],
+            "fps": 24,
+            "anim": "cheer",
+            "loop": false,
+            "name": "Hey"
+        },
+        {
+            "offsets": [
+                -118,
+                -130
+            ],
+            "indices": [],
+            "fps": 24,
+            "anim": "Anim",
+            "loop": false,
+            "name": "recoil"
+        },
+        {
+            "offsets": [
+                -112,
+                -125
+            ],
+            "indices": [],
+            "fps": 24,
+            "anim": "hey",
+            "loop": false,
+            "name": "cheer"
+        }
+    ],
+    "vocals_file": "",
+    "no_antialiasing": false,
+    "image": "characters/bfnorm",
+    "position": [
+        0,
+        0
+    ],
+    "healthicon": "bf",
+    "flip_x": true,
+    "healthbar_colors": [
+        49,
+        176,
+        209
+    ],
+    "camera_position": [
+        -100,
+        60
+    ],
+    "sing_duration": 5.7,
+    "scale": 2,
+    "_editor_isPlayer": true
+}

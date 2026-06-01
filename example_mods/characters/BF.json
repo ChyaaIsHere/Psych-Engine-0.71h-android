@@ -1,0 +1,144 @@
+{
+    "animations": [
+        {
+            "offsets": [
+                -115,
+                -130
+            ],
+            "loop": true,
+            "fps": 24,
+            "anim": "idle",
+            "indices": [],
+            "name": "Idle"
+        },
+        {
+            "offsets": [
+                -106,
+                -136
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singLEFT",
+            "indices": [],
+            "name": "Left0"
+        },
+        {
+            "offsets": [
+                -121,
+                -158
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singDOWN",
+            "indices": [],
+            "name": "Down0"
+        },
+        {
+            "offsets": [
+                -121,
+                -93
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singUP",
+            "indices": [],
+            "name": "Up0"
+        },
+        {
+            "offsets": [
+                -147,
+                -129
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singRIGHT",
+            "indices": [],
+            "name": "Right0"
+        },
+        {
+            "offsets": [
+                -106,
+                -111
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singLEFTmiss",
+            "indices": [],
+            "name": "LeftMiss"
+        },
+        {
+            "offsets": [
+                -136,
+                -148
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singDOWNmiss",
+            "indices": [],
+            "name": "DownMiss"
+        },
+        {
+            "offsets": [
+                -154,
+                -105
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singUPmiss",
+            "indices": [],
+            "name": "UpMiss"
+        },
+        {
+            "offsets": [
+                -153,
+                -105
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singRIGHTmiss",
+            "indices": [],
+            "name": "RightMiss"
+        },
+        {
+            "offsets": [
+                -113,
+                -125
+            ],
+            "indices": [],
+            "fps": 24,
+            "anim": "hey",
+            "loop": false,
+            "name": "Hey"
+        },
+        {
+            "offsets": [
+                -114,
+                -127
+            ],
+            "indices": [],
+            "fps": 24,
+            "anim": "Anim",
+            "loop": false,
+            "name": "Looks around"
+        }
+    ],
+    "no_antialiasing": false,
+    "image": "characters/BOYFRIEND",
+    "position": [
+        0,
+        0
+    ],
+    "healthicon": "bf",
+    "flip_x": true,
+    "healthbar_colors": [
+        49,
+        176,
+        209
+    ],
+    "camera_position": [
+        -100,
+        60
+    ],
+    "sing_duration": 5.7,
+    "scale": 2
+}

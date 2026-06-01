@@ -1,0 +1,179 @@
+{
+    "animations": [
+        {
+            "loop": true,
+            "offsets": [
+                -185,
+                -55
+            ],
+            "anim": "idle",
+            "fps": 24,
+            "name": "idle",
+            "indices": []
+        },
+        {
+            "offsets": [
+                -146,
+                -76
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singDOWN",
+            "indices": [],
+            "name": "down0"
+        },
+        {
+            "offsets": [
+                -179,
+                -27
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singUP",
+            "indices": [],
+            "name": "up0"
+        },
+        {
+            "offsets": [
+                -211,
+                -56
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singRIGHT",
+            "indices": [],
+            "name": "right0"
+        },
+        {
+            "offsets": [
+                -127,
+                -49
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singLEFT",
+            "indices": [],
+            "name": "left0"
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -128,
+                -50
+            ],
+            "anim": "singLEFT-alt",
+            "fps": 24,
+            "name": "left alt0",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -210,
+                -54
+            ],
+            "anim": "singRIGHT-alt",
+            "fps": 24,
+            "name": "right alt0",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -181,
+                -28
+            ],
+            "anim": "singUP-alt",
+            "fps": 24,
+            "name": "up alt0",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -145,
+                -69
+            ],
+            "anim": "singDOWN-alt",
+            "fps": 24,
+            "name": "down alt0",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -150,
+                96
+            ],
+            "anim": "singLEFT-alt2",
+            "fps": 24,
+            "name": "left alt2",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -174,
+                77
+            ],
+            "anim": "singRIGHT-alt2",
+            "fps": 24,
+            "name": "right alt2",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -150,
+                150
+            ],
+            "anim": "singUP-alt2",
+            "fps": 24,
+            "name": "up alt2",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -168,
+                51
+            ],
+            "anim": "singDOWN-alt2",
+            "fps": 24,
+            "name": "down alt2",
+            "indices": []
+        },
+        {
+            "loop": false,
+            "offsets": [
+                -202,
+                162
+            ],
+            "anim": "tran",
+            "fps": 24,
+            "name": "transition",
+            "indices": []
+        }
+    ],
+    "vocals_file": "",
+    "no_antialiasing": false,
+    "image": "characters/CBF",
+    "position": [
+        0,
+        0
+    ],
+    "healthicon": "pibboyfriend",
+    "flip_x": false,
+    "healthbar_colors": [
+        9,
+        121,
+        171
+    ],
+    "camera_position": [
+        -120,
+        -50
+    ],
+    "sing_duration": 6.3,
+    "scale": 2.5,
+    "_editor_isPlayer": false
+}

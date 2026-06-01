@@ -1,0 +1,58 @@
+{
+    "animations": [
+        {
+            "loop": false,
+            "offsets": [
+                -139,
+                -140
+            ],
+            "anim": "firstDeath",
+            "fps": 24,
+            "name": "BF dies",
+            "indices": []
+        },
+        {
+            "offsets": [
+                -144,
+                -142
+            ],
+            "loop": true,
+            "fps": 24,
+            "anim": "tuff",
+            "indices": [],
+            "name": "scary"
+        },
+        {
+            "offsets": [
+                -136,
+                -150
+            ],
+            "loop": true,
+            "fps": 24,
+            "anim": "loop",
+            "indices": [],
+            "name": "BF Dead Loop"
+        }
+    ],
+    "vocals_file": "",
+    "no_antialiasing": false,
+    "image": "characters/BOYFRIEND_DEAD",
+    "position": [
+        -40,
+        0
+    ],
+    "healthicon": "bf",
+    "flip_x": false,
+    "healthbar_colors": [
+        49,
+        176,
+        209
+    ],
+    "camera_position": [
+        0,
+        0
+    ],
+    "sing_duration": 4,
+    "scale": 1.2,
+    "_editor_isPlayer": true
+}

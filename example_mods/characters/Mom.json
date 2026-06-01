@@ -1,0 +1,135 @@
+{
+    "animations": [
+        {
+            "offsets": [
+                -160,
+                220
+            ],
+            "loop": true,
+            "fps": 24,
+            "anim": "idle",
+            "indices": [],
+            "name": "Idle"
+        },
+        {
+            "offsets": [
+                35,
+                220
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singLEFT",
+            "indices": [],
+            "name": "Left0"
+        },
+        {
+            "offsets": [
+                -161,
+                215
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singRIGHT",
+            "indices": [],
+            "name": "Right0"
+        },
+        {
+            "offsets": [
+                -163,
+                347
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singUP",
+            "indices": [],
+            "name": "Up0"
+        },
+        {
+            "offsets": [
+                -190,
+                124
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singDOWN",
+            "indices": [],
+            "name": "Down0"
+        },
+        {
+            "offsets": [
+                33,
+                218
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singLEFT-alt",
+            "indices": [],
+            "name": "Left alt"
+        },
+        {
+            "offsets": [
+                -160,
+                216
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singRIGHT-alt",
+            "indices": [],
+            "name": "Right alt"
+        },
+        {
+            "offsets": [
+                -196,
+                124
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singDOWN-alt",
+            "indices": [],
+            "name": "Down alt"
+        },
+        {
+            "offsets": [
+                -160,
+                348
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singUP-alt",
+            "indices": [],
+            "name": "Up alt"
+        },
+        {
+            "offsets": [
+                -87,
+                212
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "Tran",
+            "indices": [],
+            "name": "Tran"
+        }
+    ],
+    "vocals_file": "",
+    "no_antialiasing": false,
+    "image": "characters/mom",
+    "position": [
+        -20,
+        250
+    ],
+    "healthicon": "face",
+    "flip_x": false,
+    "healthbar_colors": [
+        161,
+        161,
+        161
+    ],
+    "camera_position": [
+        -180,
+        -390
+    ],
+    "sing_duration": 6,
+    "scale": 2.5,
+    "_editor_isPlayer": false
+}

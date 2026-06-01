@@ -1,0 +1,80 @@
+{
+    "animations": [
+        {
+            "loop": true,
+            "offsets": [
+                -160,
+                -30
+            ],
+            "anim": "idle",
+            "fps": 24,
+            "name": "idle",
+            "indices": []
+        },
+        {
+            "offsets": [
+                -152,
+                -38
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singDOWN",
+            "indices": [],
+            "name": "down0"
+        },
+        {
+            "offsets": [
+                -150,
+                12
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singUP",
+            "indices": [],
+            "name": "up0"
+        },
+        {
+            "offsets": [
+                -157,
+                -40
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singRIGHT",
+            "indices": [],
+            "name": "right0"
+        },
+        {
+            "offsets": [
+                -122,
+                -29
+            ],
+            "loop": false,
+            "fps": 24,
+            "anim": "singLEFT",
+            "indices": [],
+            "name": "left0"
+        }
+    ],
+    "vocals_file": "",
+    "no_antialiasing": false,
+    "image": "characters/CBFF",
+    "position": [
+        0,
+        0
+    ],
+    "healthicon": "pibboyfriend",
+    "flip_x": true,
+    "healthbar_colors": [
+        9,
+        121,
+        171
+    ],
+    "camera_position": [
+        -120,
+        -50
+    ],
+    "sing_duration": 6.3,
+    "scale": 2,
+    "_editor_isPlayer": false
+}

@@ -1,0 +1,3 @@
+v1:x,y or dad or gf or bf
+
+v2:tweentype,tweenspeed,camspeed
