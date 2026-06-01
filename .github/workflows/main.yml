@@ -65,10 +65,7 @@ jobs:
 
       - name: Building
         run: |
-          mkdir -p /home/runner
-          touch /home/runner/settings.cocoa
-          
-          haxelib run lime build android
+          echo "N" | haxelib run lime build android
         env:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
