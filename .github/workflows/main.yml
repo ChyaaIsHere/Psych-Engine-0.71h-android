@@ -70,7 +70,7 @@ jobs:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
 
-- name: Upload Artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: androidBuild
