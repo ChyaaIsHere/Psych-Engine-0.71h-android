@@ -40,7 +40,7 @@ jobs:
           # Setup haxelib
           haxelib setup ~/haxelib
           
-          # Install core libraries dengan versi yang tepat untuk Psych 0.7.1
+          # Install core libraries
           haxelib install hxcpp 4.2.1 --quiet
           haxelib install lime 8.0.1 --quiet
           haxelib install openfl 9.2.2 --quiet
@@ -48,19 +48,33 @@ jobs:
           haxelib install flixel-addons 3.0.2 --quiet
           haxelib install flixel-ui 2.5.0 --quiet
           
-          # Install dependencies untuk Psych 0.7.1
+          # Install dependencies
           haxelib install hscript 2.4.0 --quiet
           haxelib install hxCodec 2.5.1 --quiet
           haxelib install polymod 1.5.0 --quiet
           
-          # Git libraries yang diperlukan
+          # Git libraries - gunakan URL yang valid dan publik
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc.git
           haxelib git linc_luajit https://github.com/superpowers04/linc_luajit.git
           haxelib git hxvlc https://github.com/MAJigsaw77/hxvlc.git
-          haxelib git extension-androidtools https://github.com/jigsaw-code/extension-androidtools.git
           
-          # Hapus hxvlc jika terinstall sebagai haxelib biasa dan ganti dengan git version
-          haxelib remove hxvlc 2>/dev/null || true
+          # Coba beberapa alternatif untuk extension-androidtools
+          # Opsi 1: Gunakan versi original jika tersedia
+          haxelib git extension-androidtools https://github.com/jigsaw-code/extension-androidtools.git || \
+          # Opsi 2: Coba dari repository lain
+          haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git || \
+          # Opsi 3: Gunakan haxelib registry
+          haxelib install extension-androidtools || \
+          echo "Warning: extension-androidtools not found, build might fail"
+
+      - name: Setup Android SDK
+        run: |
+          # Install SDK platforms jika diperlukan
+          if [ ! -d "$ANDROID_HOME/platforms/android-30" ]; then
+            echo "Installing Android SDK platform 30..."
+            yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+            $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-30" "build-tools;30.0.3"
+          fi
 
       - name: Configure Lime & Android
         env:
@@ -75,17 +89,16 @@ jobs:
           haxelib run lime config JAVA_HOME $JAVA_HOME
           haxelib run lime config ANDROID_SETUP true
           
-          # Setup Android SDK jika diperlukan
-          if [ ! -d "$ANDROID_HOME/platforms/android-30" ]; then
-            echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install "platforms;android-30" "build-tools;30.0.3"
-          fi
+          # Verifikasi konfigurasi
+          echo "=== LIME CONFIG ==="
+          haxelib run lime config
 
       - name: Build Android
         env:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
         run: |
-          # Cek library yang terinstall
+          # Tampilkan library yang terinstall
           echo "=== INSTALLED LIBRARIES ==="
           haxelib list
           
@@ -96,15 +109,16 @@ jobs:
         if: always()
         run: |
           echo "=== APK FILES ==="
-          find . -name "*.apk" -type f
+          find . -name "*.apk" -type f 2>/dev/null
           echo "=== AAB FILES ==="
-          find . -name "*.aab" -type f
+          find . -name "*.aab" -type f 2>/dev/null
           echo "=== EXPORT DIRECTORY ==="
           if [ -d "export" ]; then
             find export -type f | head -50
           fi
 
       - name: Upload APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: androidBuild
@@ -112,3 +126,15 @@ jobs:
             export/**/*.apk
             export/**/*.aab
           if-no-files-found: warn
+
+
+                - name: Debug Info
+        run: |
+          echo "=== HAXE VERSION ==="
+          haxe --version
+          echo "=== HAXELIB LIST ==="
+          haxelib list
+          echo "=== PROJECT FILES ==="
+          ls -la
+          echo "=== PROJECT.XML CONTENT ==="
+          cat project.xml | grep -E "haxelib|lib" || echo "No project.xml found"
