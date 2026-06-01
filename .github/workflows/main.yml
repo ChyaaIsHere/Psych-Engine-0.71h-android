@@ -63,12 +63,9 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
-
-      - name: Pre-configure SScript
-        run: haxe --eval "sys.io.File.saveContent('/home/runner/settings.cocoa', haxe.Serializer.run({loopUnrolling: 25, importAll: false, showMacroScreen: false}))"
-
       - name: Building
-        run: haxelib run lime build android
+        run: |
+          script -q -c "yes 'Y' | haxelib run lime build android" /dev/null
         env:
           cert_pass: nullfunni
           cert_alias_pass: nullfunni
