@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- OPTIMIZADO BY VGPH MODS :3 -->
+
+<TextureAtlas imagePath="4crack2.png" width="3341" height="2612">
+  <SubTexture name="static 4crack0000.png" x="0" y="0" width="326" height="508" rotated="true" frameX="0" frameY="0" frameWidth="508" frameHeight="326" />
+  <SubTexture name="static 4crack0001.png" x="326" y="0" width="508" height="326" frameX="0" frameY="0" frameWidth="508" frameHeight="326" />
+  <SubTexture name="static 4crack0002.png" x="326" y="326" width="508" height="326" frameX="0" frameY="0" frameWidth="508" frameHeight="326" />
+</TextureAtlas>

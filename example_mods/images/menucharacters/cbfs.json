@@ -1,0 +1,9 @@
+{
+	"idle_anim": "Idle",
+	"image": "CBFS",
+	"position": [62, 26],
+	"flipX": true,
+	"antialiasing": true,
+	"scale": 0.85,
+	"confirm_anim": "Hey"
+}

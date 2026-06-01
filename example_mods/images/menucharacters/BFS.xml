@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OPTIMIZADO BY VGPH MODS :3 -->
+
+<TextureAtlas imagePath="BFS.png" width="968" height="975">
+	<SubTexture name="HEY0000" x="656" y="0" width="312" height="329" frameX="-0" frameY="-1" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0001" x="656" y="0" width="312" height="329" frameX="-0" frameY="-1" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0002" x="326" y="330" width="327" height="325" frameX="-0" frameY="-7" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0003" x="326" y="330" width="327" height="325" frameX="-0" frameY="-7" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0004" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0005" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0006" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0007" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0008" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0009" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0010" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0011" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0012" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0013" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0014" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0015" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0016" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0017" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0018" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0019" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0020" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0021" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0022" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0023" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0024" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="HEY0025" x="0" y="0" width="328" height="326" frameX="-0" frameY="-6" frameWidth="328" frameHeight="332"/>
+	<SubTexture name="Idle0000" x="653" y="330" width="313" height="324" rotated="true" frameX="-1" frameY="-17" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0001" x="653" y="330" width="313" height="324" rotated="true" frameX="-1" frameY="-17" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0002" x="0" y="657" width="326" height="315" frameX="-0" frameY="-16" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0003" x="0" y="657" width="326" height="315" frameX="-0" frameY="-16" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0004" x="326" y="655" width="324" height="320" frameX="-3" frameY="-11" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0005" x="326" y="655" width="324" height="320" frameX="-3" frameY="-11" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0006" x="328" y="0" width="328" height="330" frameX="-1" frameY="-1" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0007" x="328" y="0" width="328" height="330" frameX="-1" frameY="-1" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0008" x="0" y="326" width="326" height="331" frameX="-2" frameY="-0" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0009" x="0" y="326" width="326" height="331" frameX="-2" frameY="-0" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0010" x="0" y="326" width="326" height="331" frameX="-2" frameY="-0" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0011" x="0" y="326" width="326" height="331" frameX="-2" frameY="-0" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0012" x="0" y="326" width="326" height="331" frameX="-2" frameY="-0" frameWidth="329" frameHeight="331"/>
+	<SubTexture name="Idle0013" x="0" y="326" width="326" height="331" frameX="-2" frameY="-0" frameWidth="329" frameHeight="331"/>
+</TextureAtlas>

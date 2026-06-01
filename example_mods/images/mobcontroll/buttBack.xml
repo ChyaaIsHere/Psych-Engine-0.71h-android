@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OPTIMIZADO BY VGPH MODS :3 -->
+
+<TextureAtlas imagePath="buttBack.png" width="966" height="512">
+  <SubTexture name="hitno0000.png" x="0" y="0"  width="508" height="508" frameX="-2" frameY="-2" frameWidth="512" frameHeight="512"/>
+  <SubTexture name="hit0001.png" x="508" y="0"  width="458" height="458" frameX="-27" frameY="-27" frameWidth="512" frameHeight="512"/>
+</TextureAtlas>

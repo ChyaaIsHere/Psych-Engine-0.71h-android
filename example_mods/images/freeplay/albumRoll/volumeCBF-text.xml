@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OPTIMIZADO BY VGPH MODS :3 -->
+
+<TextureAtlas imagePath="volumeCBF-text.png" width="262" height="234">
+	<SubTexture name="switch0000" x="0" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="switch0001" x="0" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="switch0002" x="0" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="switch0003" x="0" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="idle0000" x="131" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="idle0001" x="131" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="idle0002" x="131" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="idle0003" x="131" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="idle0004" x="131" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="idle0005" x="131" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="idle0006" x="131" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+	<SubTexture name="idle0007" x="131" y="0" width="131" height="234" rotated="true" frameX="-0" frameY="-0" frameWidth="234" frameHeight="131"/>
+</TextureAtlas>

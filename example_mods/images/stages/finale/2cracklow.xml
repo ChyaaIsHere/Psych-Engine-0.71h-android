@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- OPTIMIZADO BY VGPH MODS :3 -->
+
+<TextureAtlas imagePath="2cracklow.png" width="1846" height="1850">
+  <SubTexture name="2crackloop0000.png" x="0" y="0" width="231" height="230" rotated="true" frameX="0" frameY="0" frameWidth="230" frameHeight="231" />
+  <SubTexture name="2crackloop0001.png" x="0" y="230" width="230" height="231" frameX="0" frameY="0" frameWidth="230" frameHeight="231" />
+  <SubTexture name="2crackloop0002.png" x="230" y="230" width="230" height="231" frameX="0" frameY="0" frameWidth="230" frameHeight="231" />
+  <SubTexture name="2crackloop0003.png" x="0" y="0" width="231" height="230" rotated="true" frameX="0" frameY="0" frameWidth="230" frameHeight="231" />
+</TextureAtlas>
