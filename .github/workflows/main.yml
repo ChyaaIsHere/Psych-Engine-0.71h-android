@@ -11,7 +11,6 @@ jobs:
 buildAndroid:
 runs-on: ubuntu-latest
 
-```
 steps:
   - name: Checkout
     uses: actions/checkout@v4
@@ -100,4 +99,3 @@ steps:
         **/*.apk
         **/*.aab
       if-no-files-found: error
-```
