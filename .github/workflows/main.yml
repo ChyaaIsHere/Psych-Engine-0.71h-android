@@ -48,7 +48,7 @@ jobs:
           # Dibutuhkan Project.xml (dulu tidak ada di workflow)
           haxelib install tjson --quiet
           haxelib install hxCodec 2.5.1 --quiet
-          # SScript membawa dependency hscript-nya sendiri, jadi hscript tidak dipasang terpisah
+          haxelib install hscript 2.5.0 --quiet
           haxelib install SScript 3.0.0 --quiet
 
           # Library Android khusus
