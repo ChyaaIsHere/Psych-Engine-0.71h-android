@@ -1,0 +1,28 @@
+name: probe
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.2.5
+      - name: Cari versi SScript yang punya TeaCall
+        run: |
+          haxelib setup ~/haxelib
+          haxelib info SScript | head -20
+          VERS=$(haxelib info SScript | grep -i "versions" | sed 's/.*: //' | tr -d ',' )
+          echo "versi: $VERS"
+          for v in $VERS; do
+            haxelib install SScript $v --quiet --skip-dependencies > /dev/null 2>&1 || { echo "$v: gagal install"; continue; }
+            d=$(ls -d ~/haxelib/sscript/$(echo $v | tr . ,) 2>/dev/null)
+            n=$(grep -rl "TeaCall" "$d" 2>/dev/null | wc -l)
+            deps=$(grep -o '"dependencies"[^}]*}' "$d/haxelib.json" 2>/dev/null | tr -d '\n ')
+            echo "SScript $v: TeaCall di $n file; $deps"
+          done
+      - name: Cek AndroidDialogs
+        run: |
+          haxelib install AndroidDialogs --quiet
+          d=$(ls -d ~/haxelib/androiddialogs/* | head -1)
+          echo "dir: $d"
+          grep -rn "ShowToast\|ShowAlertDialog" "$d" | head -5
