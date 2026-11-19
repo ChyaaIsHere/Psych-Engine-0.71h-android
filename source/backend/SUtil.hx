@@ -2,6 +2,7 @@ package backend;
 
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
+import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.Lib;
 import haxe.CallStack.StackItem;
@@ -62,22 +63,26 @@ class SUtil
 			removeDir(base + 'assets');
 			removeDir(base + 'mods');
 
-			// Use OpenFL's public asset API instead of casting/iterating Lime's private
-			// library map, which can fail at runtime on Android with "Invalid Cast".
+			// OpenFL's asset list includes several asset types. getBytes() only works
+			// for BINARY assets; calling it on other types can throw Invalid Cast.
+			// Handle text assets through getText(), binary assets through getBytes(),
+			// and leave image/sound assets to OpenFL's normal asset loader.
 			var assetIds:Array<String> = OpenFlAssets.list();
 			for (id in assetIds)
 			{
 				if (!(StringTools.startsWith(id, 'assets/') || StringTools.startsWith(id, 'mods/')))
 					continue;
-				if (id == 'assets/build_id.txt')
-					continue;
-				// This repository's videos folder contains a text-only instruction marker,
-				// not a video/binary asset. Asking OpenFL for its bytes raises a missing
-				// BINARY asset error on Android, so it must not be copied as a game asset.
-				if (StringTools.endsWith(id, '/put-your-videos-here.txt'))
+				if (id == 'assets/build_id.txt' || StringTools.endsWith(id, '/put-your-videos-here.txt'))
 					continue;
 
-				var bytes = OpenFlAssets.getBytes(id);
+				var bytes:haxe.io.Bytes = null;
+				if (OpenFlAssets.exists(id, AssetType.BINARY))
+					bytes = OpenFlAssets.getBytes(id);
+				else if (OpenFlAssets.exists(id, AssetType.TEXT))
+					bytes = haxe.io.Bytes.ofString(OpenFlAssets.getText(id));
+				else
+					continue;
+
 				if (bytes == null)
 					continue;
 
