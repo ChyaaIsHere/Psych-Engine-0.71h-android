@@ -1,0 +1,41 @@
+name: probe
+on:
+  push:
+    branches: [fix-android-build]
+    paths: ['.github/workflows/probe.yml']
+jobs:
+  probe:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.2.5
+      - name: Install
+        run: |
+          haxelib setup ~/haxelib
+          haxelib install hxcpp 4.2.1 --quiet
+          haxelib install lime 8.0.1 --quiet
+          haxelib install openfl 9.2.2 --quiet
+          haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools 84c01580096efe59d35a9d862cbb1766850dd454
+      - name: Compile old androidtools alone
+        run: |
+          set +e
+          D=$(haxelib libpath extension-androidtools | head -1)
+          echo "HASIL libpath=$D"
+          echo "HASIL files: $(ls $D $D/src 2>&1 | tr '\n' ' ')"
+          mkdir -p t && cd t
+          haxe -lib lime -D android -cp $D/src --no-output android.Permissions 2>&1 | sed 's/^/HASIL P: /'
+          haxe -lib lime -D android -cp $D/src --no-output android.Tools 2>&1 | sed 's/^/HASIL T: /'
+          haxe -lib lime -D android -cp $D/src --no-output android.PermissionsList 2>&1 | sed 's/^/HASIL L: /'
+          echo "HASIL selesai compile"
+          sed -n 1,12p $D/src/android/Permissions.hx | sed 's/^/HASIL src: /'
+      - name: API SScript
+        run: |
+          set +e
+          for v in 7.0.0 7.7.0; do
+            rm -rf ~/haxelib/SScript
+            haxelib install SScript $v --quiet --skip-dependencies > /dev/null 2>&1
+            d=~/haxelib/SScript/$(echo $v | tr . ,)
+            echo "HASIL SScript $v: $(grep -rhoE 'function (kill|destroy|doScript|doString|executeFunction|call|new|preset|execute)\b' $d/src/tea/SScript.hx | sort -u | tr '\n' ' ')"
+            echo "HASIL   TeaCall: $(grep -rn 'TeaCall' $d/src | head -2 | tr '\n' '|')"
+          done
