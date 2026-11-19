@@ -85,7 +85,9 @@ jobs:
           haxelib run lime config
 
       - name: Build Android
-        run: haxelib run lime build android -release
+        run: |
+          # SScript 7.x menanyakan setup interaktif saat kompilasi; jawab N = pengaturan default
+          printf 'N\nN\nN\nN\n' | haxelib run lime build android -release
 
       - name: Sign APK
         run: |
