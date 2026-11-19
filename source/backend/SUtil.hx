@@ -1,10 +1,6 @@
 package backend;
 
-#if android
-import android.Tools;
-import android.Permissions;
-import android.PermissionsList;
-#end
+import lime.utils.Assets as LimeAssets;
 
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
@@ -34,53 +30,96 @@ class SUtil
 		if (aDir != null && aDir.length > 0)
 			return aDir;
 		else
-			return aDir = Tools.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file') + '/';
+		{
+			// Penyimpanan internal aplikasi: tanpa izin storage dan tanpa ekstrak manual
+			aDir = Path.addTrailingSlash(lime.system.System.applicationStorageDirectory);
+			return aDir;
+		}
 		#else
 		return '';
 		#end
 	}
 
+	/**
+	 * Menyalin aset yang dibundel di dalam APK (assets/ dan mods/) ke penyimpanan aplikasi
+	 * saat pertama dibuka atau setelah APK diperbarui, jadi pemain tidak perlu ekstrak manual.
+	 */
 	public static function doTheCheck()
 	{
 		#if android
-		if (!Permissions.getGrantedPermissions().contains(PermissionsList.READ_EXTERNAL_STORAGE) || !Permissions.getGrantedPermissions().contains(PermissionsList.WRITE_EXTERNAL_STORAGE))
+		var base:String = SUtil.getPath();
+		var idFile:String = base + 'assets/build_id.txt';
+
+		var apkId:String = null;
+		try { apkId = OpenFlAssets.getText('assets/build_id.txt'); } catch (e:Dynamic) {}
+		apkId = (apkId == null) ? 'unknown' : StringTools.trim(apkId);
+
+		var diskId:String = null;
+		try { if (FileSystem.exists(idFile)) diskId = StringTools.trim(File.getContent(idFile)); } catch (e:Dynamic) {}
+		if (diskId == apkId)
+			return;
+
+		try
 		{
-			Permissions.requestPermissions([PermissionsList.READ_EXTERNAL_STORAGE, PermissionsList.WRITE_EXTERNAL_STORAGE]);
-			SUtil.applicationAlert('Permissions', "if you acceptd the permissions all good if not expect a crash" + '\n' + 'Press Ok to see what happens');
+			removeDir(base + 'assets');
+			removeDir(base + 'mods');
+
+			for (libName in LimeAssets.libraries.keys())
+			{
+				var lib = LimeAssets.libraries.get(libName);
+				if (lib == null)
+					continue;
+
+				for (id in lib.list(null))
+				{
+					if (!(StringTools.startsWith(id, 'assets/') || StringTools.startsWith(id, 'mods/')))
+						continue;
+					if (id == 'assets/build_id.txt')
+						continue;
+
+					var bytes = lib.getBytes(id);
+					if (bytes == null)
+						continue;
+
+					var dest:String = base + id;
+					makeDirs(Path.directory(dest));
+					File.saveBytes(dest, bytes);
+				}
+			}
+
+			// Ditulis paling akhir: kalau proses salin terputus, akan diulang pada peluncuran berikutnya
+			makeDirs(Path.directory(idFile));
+			File.saveContent(idFile, apkId);
 		}
-
-		if (Permissions.getGrantedPermissions().contains(PermissionsList.READ_EXTERNAL_STORAGE) || Permissions.getGrantedPermissions().contains(PermissionsList.WRITE_EXTERNAL_STORAGE))
+		catch (e:Dynamic)
 		{
-			if (!FileSystem.exists(Tools.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file')))
-				FileSystem.createDirectory(Tools.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file'));
-
-			if (!FileSystem.exists(SUtil.getPath() + 'assets') && !FileSystem.exists(SUtil.getPath() + 'mods'))
-			{
-				SUtil.applicationAlert('Uncaught Error :(!', "Whoops, seems you didn't extract the files to the .PsychEngine!\nPlease watch the tutorial by pressing OK.");
-                if (DeviceLanguage.getLang() == 'zh') CoolUtil.browserLoad('https://b23.tv/KqRRT8N');
-		        else CoolUtil.browserLoad('https://youtu.be/AmoNoYjJgHs?si=LvgXbRRn7eJlwL0w');				
-				System.exit(0);
-			}
-			else
-			{
-				if (!FileSystem.exists(SUtil.getPath() + 'assets'))
-				{
-					SUtil.applicationAlert('Uncaught Error :(!', "Whoops, seems you didn't extract the assets folder to the .PsychEngine!\nPlease watch the tutorial by pressing OK.");
-					if (DeviceLanguage.getLang() == 'zh') CoolUtil.browserLoad('https://b23.tv/KqRRT8N');
-		            else CoolUtil.browserLoad('https://youtu.be/AmoNoYjJgHs?si=LvgXbRRn7eJlwL0w');
-					System.exit(0);
-				}
-
-				if (!FileSystem.exists(SUtil.getPath() + 'mods'))
-				{
-					SUtil.applicationAlert('Uncaught Error :(!', "Whoops, seems you didn't extract the mods folder to the .PsychEngine!\nPlease watch the tutorial by pressing OK.");
-					if (DeviceLanguage.getLang() == 'zh') CoolUtil.browserLoad('https://b23.tv/KqRRT8N');
-		            else CoolUtil.browserLoad('https://youtu.be/AmoNoYjJgHs?si=LvgXbRRn7eJlwL0w');
-					System.exit(0);
-				}
-			}
+			SUtil.applicationAlert('Error', 'Gagal menyiapkan file game:\n' + Std.string(e));
+			System.exit(0);
 		}
 		#end
+	}
+
+	private static function makeDirs(dir:String):Void
+	{
+		if (dir == null || dir.length == 0 || FileSystem.exists(dir))
+			return;
+		makeDirs(Path.directory(dir));
+		FileSystem.createDirectory(dir);
+	}
+
+	private static function removeDir(dir:String):Void
+	{
+		if (!FileSystem.exists(dir))
+			return;
+		for (f in FileSystem.readDirectory(dir))
+		{
+			var path:String = dir + '/' + f;
+			if (FileSystem.isDirectory(path))
+				removeDir(path);
+			else
+				FileSystem.deleteFile(path);
+		}
+		FileSystem.deleteDirectory(dir);
 	}
 
 	public static function gameCrashCheck()

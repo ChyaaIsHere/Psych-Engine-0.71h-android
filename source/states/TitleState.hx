@@ -86,13 +86,13 @@ class TitleState extends MusicBeatState
 		#if android
 		var lang:String = '';
 		if (DeviceLanguage.getLang() == 'zh') 
-		lang = 'psych0.71h 安卓端口测试\nb站-北狐丶逐梦移植\n禁止上传到任何资源网站';
+		lang = '';
 		else
-		lang = 'psych0.71h android port test\nport by NF|beihu';
+		lang = '';
 		if(!checkToast){
 				
 		checkToast = true;
-		AndroidDialogsExtend.OpenToast(lang,2);
+		if (lang != '') AndroidDialogsExtend.OpenToast(lang,2);
 		
 		}
 		#end
