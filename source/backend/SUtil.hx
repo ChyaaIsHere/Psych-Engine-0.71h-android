@@ -44,6 +44,7 @@ class SUtil
 	 * Menyalin aset yang dibundel di dalam APK (assets/ dan mods/) ke penyimpanan aplikasi
 	 * saat pertama dibuka atau setelah APK diperbarui, jadi pemain tidak perlu ekstrak manual.
 	 */
+	@:privateAccess
 	public static function doTheCheck()
 	{
 		#if android
