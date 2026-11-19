@@ -83,6 +83,10 @@ class SUtil
 			{
 				if (!StringTools.startsWith(id, 'assets/') || id == 'assets/build_id.txt')
 					continue;
+				// Gambar tidak disalin: openfl membacanya langsung dari APK, dan menyalinnya sangat lambat
+				var ext:String = Path.extension(id).toLowerCase();
+				if (ext == 'png' || ext == 'jpg' || ext == 'jpeg')
+					continue;
 				total++;
 				if (copyOne(lib, id, base + id, errors))
 					copied++;
@@ -122,32 +126,13 @@ class SUtil
 	}
 
 	/**
-	 * Menyalin satu aset. Gambar lewat getImage lalu diubah ke PNG; teks lewat getText;
+	 * Menyalin satu aset. Teks lewat getText;
 	 * sisanya lewat getBytes (ogg, json, biner). Mengembalikan true jika berhasil.
 	 */
 	private static function copyOne(lib:lime.utils.AssetLibrary, id:String, dest:String, errors:Array<String>):Bool
 	{
 		var ext:String = Path.extension(id).toLowerCase();
 		var firstError:String = null;
-
-		if (ext == 'png')
-		{
-			try
-			{
-				var img = lib.getImage(id);
-				if (img != null)
-				{
-					var png = img.encode();
-					if (png != null)
-					{
-						makeDirs(Path.directory(dest));
-						File.saveBytes(dest, png);
-						return true;
-					}
-				}
-			}
-			catch (e:Dynamic) { firstError = Std.string(e); }
-		}
 
 		if (['json', 'txt', 'lua', 'hx', 'hscript', 'xml', 'ini', 'csv', 'tsv', 'frag', 'vert'].indexOf(ext) != -1)
 		{
