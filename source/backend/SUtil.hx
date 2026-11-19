@@ -71,6 +71,11 @@ class SUtil
 					continue;
 				if (id == 'assets/build_id.txt')
 					continue;
+				// This repository's videos folder contains a text-only instruction marker,
+				// not a video/binary asset. Asking OpenFL for its bytes raises a missing
+				// BINARY asset error on Android, so it must not be copied as a game asset.
+				if (StringTools.endsWith(id, '/put-your-videos-here.txt'))
+					continue;
 
 				var bytes = OpenFlAssets.getBytes(id);
 				if (bytes == null)
