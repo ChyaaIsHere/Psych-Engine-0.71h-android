@@ -61,6 +61,11 @@ jobs:
           # Versi lama (Juli 2022): masih punya android.Tools & android.Permissions yang dipakai SUtil.hx
           haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools 84c01580096efe59d35a9d862cbb1766850dd454
 
+          # openfl.utils.JNI sudah dihapus di OpenFL 9.2; penggantinya lime.system.JNI (API sama)
+          for lib in devicelanguage AndroidDialogs extension-androidtools; do
+            grep -rl "openfl.utils.JNI" ~/haxelib/$lib 2>/dev/null | xargs -r sed -i 's/openfl\.utils\.JNI/lime.system.JNI/g'
+          done
+
       - name: Debug Info
         run: |
           haxe --version
