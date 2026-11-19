@@ -21,14 +21,20 @@ jobs:
         run: |
           set +e
           D=$(haxelib libpath extension-androidtools | head -1)
-          echo "HASIL libpath=$D"
-          echo "HASIL files: $(ls $D $D/src 2>&1 | tr '\n' ' ')"
           mkdir -p t && cd t
-          haxe -lib lime -D android -cp $D/src --no-output android.Permissions 2>&1 | sed 's/^/HASIL P: /'
-          haxe -lib lime -D android -cp $D/src --no-output android.Tools 2>&1 | sed 's/^/HASIL T: /'
-          haxe -lib lime -D android -cp $D/src --no-output android.PermissionsList 2>&1 | sed 's/^/HASIL L: /'
-          echo "HASIL selesai compile"
-          sed -n 1,12p $D/src/android/Permissions.hx | sed 's/^/HASIL src: /'
+          echo "HASIL --- asli"
+          haxe -lib lime -D android -cp $D/src -cpp out --no-output android.Permissions 2>&1 | sed 's/^/HASIL P: /'
+          echo "HASIL --- Tools"
+          haxe -lib lime -D android -cp $D/src -cpp out --no-output android.Tools 2>&1 | sed 's/^/HASIL T: /'
+          echo "HASIL --- varian tanpa spasi"
+          cp -r $D/src ./src2
+          sed -i 's/new Event< Array<String> -> Void>()/new Event<Array<String>->Void>()/' src2/android/Permissions.hx
+          haxe -lib lime -D android -cp src2 -cpp out2 --no-output android.Permissions 2>&1 | sed 's/^/HASIL V1: /'
+          echo "HASIL --- varian tipe eksplisit"
+          cp -r $D/src ./src3
+          sed -i 's/public static var onPermissionsGranted = new Event< Array<String> -> Void>();/public static var onPermissionsGranted:Event<Array<String>->Void> = new Event<Array<String>->Void>();/; s/public static var onPermissionsDenied = new Event< Array<String> -> Void>();/public static var onPermissionsDenied:Event<Array<String>->Void> = new Event<Array<String>->Void>();/' src3/android/Permissions.hx
+          haxe -lib lime -D android -cp src3 -cpp out3 --no-output android.Permissions 2>&1 | sed 's/^/HASIL V2: /'
+          echo "HASIL selesai"
       - name: API SScript
         run: |
           set +e
