@@ -86,8 +86,13 @@ jobs:
 
       - name: Build Android
         run: |
-          # SScript 7.x menanyakan setup interaktif saat kompilasi; jawab N = pengaturan default
-          printf 'N\nN\nN\nN\n' | haxelib run lime build android -release
+          # SScript 7.x menjalankan setup interaktif saat kompilasi pertama lalu sengaja menghentikannya.
+          # Jawab N (pengaturan default); percobaan pertama boleh gagal, yang kedua build sungguhan.
+          if [ ! -f ~/settings.cocoa ]; then
+            printf 'N\nN\nN\nN\n' | haxelib run lime build android -release || true
+          fi
+          ls -la ~/settings.cocoa
+          haxelib run lime build android -release
 
       - name: Sign APK
         run: |
