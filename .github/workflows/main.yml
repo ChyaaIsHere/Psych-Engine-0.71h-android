@@ -181,6 +181,9 @@ jobs:
           rm -rf mod_tmp mod_archive
           du -sh assets | sed 's/^/UKURAN ASSETS: /'
 
+      - name: Tandai versi build (untuk salin otomatis di HP)
+        run: echo "${GITHUB_RUN_ID}-${GITHUB_SHA}" > assets/preload/build_id.txt
+
       - name: Build Android
         run: |
           # SScript 7.x menjalankan setup interaktif saat kompilasi pertama lalu sengaja menghentikannya.
