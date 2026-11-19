@@ -59,7 +59,7 @@ class Log
 			if (throwErrors)
 			{
 			*/
-				#if sys
+				#if (sys && !macro)
 				try
 				{
 					if (!FileSystem.exists(SUtil.getPath() + 'logs'))
