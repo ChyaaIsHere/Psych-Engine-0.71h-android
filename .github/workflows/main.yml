@@ -17,7 +17,19 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-
+          
+      - name: Patch SUtil (fix private field libraries)
+        run: |
+          FILE=source/backend/SUtil.hx
+          test -f "$FILE" || { echo "SUtil.hx tidak ditemukan"; exit 1; }
+          if ! grep -q '@:access(lime.utils.Assets)' "$FILE"; then
+            sed -i -E '0,/^(final )?class /s//@:access(lime.utils.Assets)\n@:access(openfl.utils.Assets)\n&/' "$FILE"
+          fi
+          echo "---- 15 baris pertama SUtil.hx setelah patch ----"
+          sed -n '1,15p' "$FILE"
+          echo "---- sekitar baris 70 ----"
+          sed -n '65,75p' "$FILE"
+          
       - name: Setup Android NDK
         uses: nttld/setup-ndk@v1
         id: setup-ndk
