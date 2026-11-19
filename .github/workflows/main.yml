@@ -101,7 +101,7 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
           haxelib run lime config
 
-      - name: Unduh dan pasang mod dari Google Drive
+      - name: Unduh mod dari Google Drive dan masukkan ke assets
         env:
           MOD_FILE_ID: 1ABXxTdozb1CUR9ZezIeGi2aAfHAA4_Ub
         run: |
@@ -110,7 +110,6 @@ jobs:
           sudo apt-get install -y -qq unrar > /dev/null 2>&1 || sudo apt-get install -y -qq 7zip > /dev/null 2>&1 || true
 
           gdown "https://drive.google.com/uc?id=${MOD_FILE_ID}" -O mod_archive
-          ls -la mod_archive
           file mod_archive
 
           mkdir mod_tmp
@@ -121,8 +120,8 @@ jobs:
           else echo "GAGAL mengekstrak arsip mod"; exit 1; fi
 
           python3 - <<'PY'
-          import os, json, shutil
-          SRC, DST = 'mod_tmp', 'example_mods'
+          import os, shutil
+          SRC = 'mod_tmp'
           KEYS = {'weeks','songs','characters','images','data','scripts','stages','custom_events',
                   'custom_notetypes','music','sounds','shaders','videos','fonts','pack.json'}
           def is_mod(d):
@@ -138,30 +137,49 @@ jobs:
                   break
           if root is None:
               raise SystemExit('Folder mod tidak ditemukan. Isi arsip: ' + str(os.listdir(SRC)))
-          name = (os.path.basename(root) if root != SRC else 'mod').strip() or 'mod'
-          shutil.rmtree(DST, ignore_errors=True)
-          os.makedirs(DST)
-          dest = os.path.join(DST, name)
-          shutil.copytree(root, dest)
-          pj = os.path.join(dest, 'pack.json')
-          try:
-              with open(pj, encoding='utf-8-sig') as f:
-                  data = json.load(f)
-          except Exception:
-              data = {}
-          data['runsGlobally'] = True
-          data.setdefault('name', name)
-          with open(pj, 'w', encoding='utf-8') as f:
-              json.dump(data, f, indent=2, ensure_ascii=False)
-          print('MOD DIPASANG:', name, '(dari', root + ')')
-          print('ISI:', sorted(os.listdir(dest)))
+          print('Mod ditemukan di:', root)
+
+          # Peta folder mod -> folder assets yang dibaca engine (sama dengan susunan assets bawaan)
+          MAP = {
+              'images': 'assets/shared/images',
+              'music': 'assets/shared/music',
+              'sounds': 'assets/shared/sounds',
+              'shaders': 'assets/shared/shaders',
+              'fonts': 'assets/fonts',
+              'songs': 'assets/songs',
+              'videos': 'assets/videos',
+              'weeks': 'assets/preload/weeks',
+              'data': 'assets/preload/data',
+              'characters': 'assets/preload/characters',
+              'stages': 'assets/preload/stages',
+              'scripts': 'assets/preload/scripts',
+              'custom_events': 'assets/preload/custom_events',
+              'custom_notetypes': 'assets/preload/custom_notetypes',
+          }
+          for entry in sorted(os.listdir(root)):
+              p = os.path.join(root, entry)
+              if not os.path.isdir(p) or entry == '__MACOSX':
+                  continue
+              dest = MAP.get(entry, 'assets/preload/' + entry)
+              shutil.copytree(p, dest, dirs_exist_ok=True)
+              print('MASUK:', entry, '->', dest)
+
+          # Daftar week: engine membaca weeks/weekList.txt dari assets (bukan dari folder mod)
+          wdir = os.path.join(root, 'weeks')
+          os.makedirs('assets/preload/weeks', exist_ok=True)
+          lst = 'assets/preload/weeks/weekList.txt'
+          if os.path.isfile(os.path.join(wdir, 'weekList.txt')):
+              shutil.copy(os.path.join(wdir, 'weekList.txt'), lst)
+          else:
+              names = sorted(f[:-5] for f in os.listdir(wdir) if f.endswith('.json')) if os.path.isdir(wdir) else []
+              with open(lst, 'w', encoding='utf-8') as f:
+                  f.write('\n'.join(names) + '\n')
+          with open(lst, encoding='utf-8') as f:
+              print('WEEKLIST:', f.read().split())
           PY
 
-          du -sh example_mods/* | sed 's/^/UKURAN MOD: /'
           rm -rf mod_tmp mod_archive
-
-      - name: Tandai versi build (untuk salin otomatis di HP)
-        run: echo "${GITHUB_RUN_ID}-${GITHUB_SHA}" > assets/preload/build_id.txt
+          du -sh assets | sed 's/^/UKURAN ASSETS: /'
 
       - name: Build Android
         run: |

@@ -41,114 +41,14 @@ class SUtil
 	}
 
 	/**
-	 * Menyalin aset dari APK (assets/ dan mods/) ke penyimpanan aplikasi saat pertama dibuka
-	 * atau setelah APK diperbarui. Kegagalan satu file TIDAK menghentikan proses: file yang gagal
-	 * dicatat ke assets_copy_errors.txt. (Aset yang di-embed lime tidak bisa dibaca sebagai Bytes
-	 * dan memunculkan "Invalid cast"; itu sebabnya setiap file ditangani terpisah.)
+	 * Semua isi mod sekarang sudah masuk ke dalam assets saat build (lihat workflow),
+	 * jadi tidak ada lagi file yang disalin dari APK ke penyimpanan. Cukup pastikan folder mods ada.
 	 */
 	public static function doTheCheck()
 	{
 		#if android
-		var base:String = SUtil.getPath();
-		var idFile:String = base + 'assets/build_id.txt';
-
-		var apkId:String = 'unknown';
-		try
-		{
-			var t:String = OpenFlAssets.getText('assets/build_id.txt');
-			if (t != null) apkId = StringTools.trim(t);
-		}
-		catch (e:Dynamic) {}
-
-		var diskId:String = null;
-		try { if (FileSystem.exists(idFile)) diskId = StringTools.trim(File.getContent(idFile)); }
-		catch (e:Dynamic) {}
-		if (diskId == apkId)
-			return;
-
-		var errors:Array<String> = [];
-		try { removeDir(base + 'assets'); } catch (e:Dynamic) { errors.push('hapus assets: ' + Std.string(e)); }
-		try { removeDir(base + 'mods'); } catch (e:Dynamic) { errors.push('hapus mods: ' + Std.string(e)); }
-
-		var copied:Int = 0;
-		for (libName in ['default', 'songs', 'shared', 'week_assets', 'videos'])
-		{
-			if (!LimeAssets.hasLibrary(libName))
-				continue;
-			var lib = LimeAssets.getLibrary(libName);
-			if (lib == null)
-				continue;
-
-			for (id in lib.list(null))
-			{
-				if (!(StringTools.startsWith(id, 'assets/') || StringTools.startsWith(id, 'mods/')))
-					continue;
-				if (id == 'assets/build_id.txt')
-					continue;
-
-				if (copyOne(lib, id, base + id, errors))
-					copied++;
-			}
-		}
-
-		try
-		{
-			if (errors.length > 0)
-			{
-				makeDirs(base);
-				File.saveContent(base + 'assets_copy_errors.txt', errors.join('\n'));
-			}
-		}
-		catch (e:Dynamic) {}
-
-		if (copied == 0)
-		{
-			SUtil.applicationAlert('Error', 'Tidak ada file game yang berhasil disalin.\n' + (errors.length > 0 ? errors[0] : ''));
-			System.exit(0);
-		}
-
-		// Ditulis paling akhir: kalau proses terputus, akan diulang pada peluncuran berikutnya
-		try
-		{
-			makeDirs(Path.directory(idFile));
-			File.saveContent(idFile, apkId);
-		}
-		catch (e:Dynamic) {}
+		try { makeDirs(SUtil.getPath() + 'mods'); } catch (e:Dynamic) {}
 		#end
-	}
-
-	/**
-	 * Mencoba menyalin satu aset. Mengembalikan true jika berhasil.
-	 * Teks dibaca lewat getText, selain itu getBytes; kalau keduanya gagal, dicatat lalu dilewati.
-	 */
-	private static function copyOne(lib:lime.utils.AssetLibrary, id:String, dest:String, errors:Array<String>):Bool
-	{
-		var ext:String = Path.extension(id).toLowerCase();
-		var isText:Bool = ['json', 'txt', 'lua', 'hx', 'hscript', 'xml', 'ini', 'csv', 'tsv', 'frag', 'vert'].indexOf(ext) != -1;
-
-		var firstError:String = null;
-		if (isText)
-		{
-			try
-			{
-				makeDirs(Path.directory(dest));
-				File.saveContent(dest, lib.getText(id));
-				return true;
-			}
-			catch (e:Dynamic) { firstError = Std.string(e); }
-		}
-
-		try
-		{
-			makeDirs(Path.directory(dest));
-			File.saveBytes(dest, lib.getBytes(id));
-			return true;
-		}
-		catch (e:Dynamic)
-		{
-			errors.push(id + ' -> ' + (firstError != null ? firstError + ' / ' : '') + Std.string(e));
-			return false;
-		}
 	}
 
 	private static function makeDirs(dir:String):Void
@@ -157,21 +57,6 @@ class SUtil
 			return;
 		makeDirs(Path.directory(dir));
 		FileSystem.createDirectory(dir);
-	}
-
-	private static function removeDir(dir:String):Void
-	{
-		if (!FileSystem.exists(dir))
-			return;
-		for (f in FileSystem.readDirectory(dir))
-		{
-			var path:String = dir + '/' + f;
-			if (FileSystem.isDirectory(path))
-				removeDir(path);
-			else
-				FileSystem.deleteFile(path);
-		}
-		FileSystem.deleteDirectory(dir);
 	}
 
 	public static function gameCrashCheck()
