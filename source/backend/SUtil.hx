@@ -1,7 +1,5 @@
 package backend;
 
-import lime.utils.Assets as LimeAssets;
-
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
 import openfl.utils.Assets as OpenFlAssets;
@@ -44,7 +42,6 @@ class SUtil
 	 * Menyalin aset yang dibundel di dalam APK (assets/ dan mods/) ke penyimpanan aplikasi
 	 * saat pertama dibuka atau setelah APK diperbarui, jadi pemain tidak perlu ekstrak manual.
 	 */
-	@:privateAccess
 	public static function doTheCheck()
 	{
 		#if android
@@ -65,27 +62,23 @@ class SUtil
 			removeDir(base + 'assets');
 			removeDir(base + 'mods');
 
-			for (libName in LimeAssets.libraries.keys())
+			// Use OpenFL's public asset API instead of casting/iterating Lime's private
+			// library map, which can fail at runtime on Android with "Invalid Cast".
+			var assetIds:Array<String> = OpenFlAssets.list();
+			for (id in assetIds)
 			{
-				var lib = LimeAssets.libraries.get(libName);
-				if (lib == null)
+				if (!(StringTools.startsWith(id, 'assets/') || StringTools.startsWith(id, 'mods/')))
+					continue;
+				if (id == 'assets/build_id.txt')
 					continue;
 
-				for (id in lib.list(null))
-				{
-					if (!(StringTools.startsWith(id, 'assets/') || StringTools.startsWith(id, 'mods/')))
-						continue;
-					if (id == 'assets/build_id.txt')
-						continue;
+				var bytes = OpenFlAssets.getBytes(id);
+				if (bytes == null)
+					continue;
 
-					var bytes = lib.getBytes(id);
-					if (bytes == null)
-						continue;
-
-					var dest:String = base + id;
-					makeDirs(Path.directory(dest));
-					File.saveBytes(dest, bytes);
-				}
+				var dest:String = base + id;
+				makeDirs(Path.directory(dest));
+				File.saveBytes(dest, bytes);
 			}
 
 			// Ditulis paling akhir: kalau proses salin terputus, akan diulang pada peluncuran berikutnya
