@@ -65,6 +65,9 @@ class SUtil
 		if (diskId == apkId)
 			return;
 
+		// Penyalinan pertama bisa makan waktu; layar tetap hitam sampai selesai, jadi beri tahu pemain
+		try { AndroidDialogsExtend.OpenToast('Menyiapkan file game (hanya pertama kali). Tunggu sampai muncul layar judul, bisa 1-2 menit.', 1); } catch (e:Dynamic) {}
+
 		var errors:Array<String> = [];
 		try { removeDir(base + 'assets'); } catch (e:Dynamic) { errors.push('hapus assets: ' + Std.string(e)); }
 		try { makeDirs(base + 'mods'); } catch (e:Dynamic) {}
