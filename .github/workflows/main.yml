@@ -103,7 +103,7 @@ jobs:
 
       - name: Unduh mod dari Google Drive dan masukkan ke assets
         env:
-          MOD_FILE_ID: 1ABXxTdozb1CUR9ZezIeGi2aAfHAA4_Ub
+          MOD_FILE_ID: 1-YBx43h7BbqO69PZBHeXxxzxUATGWuz2
         run: |
           pip install --quiet gdown
           sudo apt-get update -qq > /dev/null 2>&1 || true
